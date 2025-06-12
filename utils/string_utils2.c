@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strings_utils2.c                                   :+:      :+:    :+:   */
+/*   string_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/24 20:04:22 by mzutter           #+#    #+#             */
-/*   Updated: 2025/05/24 20:11:13 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/06/12 20:37:46 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,23 @@ char	*ft_strncpy(char *dest, const char *src, unsigned int n)
 
 int	count_strings(char **arr)
 {
-    int	count;
+	int	count;
 
 	count = 0;
-    while (arr && arr[count] != NULL)
-        count++;
-    return (count);
+	while (arr && arr[count] != NULL)
+		count++;
+	return (count);
 }
 
-void whitespace_to_space(char *str)
+void	whitespace_to_space(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (str[i])
+	while (*str[i])
 	{
-		if (is_whitespace(str[i]))
-			str[i] = ' ';
+		if (is_whitespace(*str[i]))
+			*str[i] = ' ';
 		i++;
 	}
 }

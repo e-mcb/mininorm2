@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 13:31:47 by mzutter           #+#    #+#             */
-/*   Updated: 2025/05/27 22:53:21 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/06/12 23:56:39 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define OPEN_QUOTES "Minishell does not support open quotes,\
 						please escape them properly\n"
 # define DOUBLE_DOLLARS "Minishell ne gere pas $$\n"
+# define AMB_REDIR "Ambiguous redirect: "
 
 typedef enum e_token_type
 {
@@ -89,6 +90,14 @@ typedef struct s_expand
 	char	**result;
 }	t_expand;
 
+typedef struct s_splitter
+{
+    size_t	start;
+    size_t	capacity;
+	size_t	i;
+	size_t	count;
+} t_splitter;
+
 //booleans functions for split2
 bool	is_quote(char c);
 bool	is_closing_quote(char c, char opening_quote);
@@ -103,7 +112,7 @@ char	*ft_strncpy(char *dest, const char *src, unsigned int n);
 char	*strndup_custom(const char *s, size_t n);
 int		count_strings(char **arr);
 void	ft_init_var(size_t *i, size_t *count, bool *in_quotes, char *c);
-void	whitespace_to_space(char *str);
+void	whitespace_to_space(char **str);
 
 //misc utils
 void	*ft_realloc(void *ptr, int old_size, int new_size);

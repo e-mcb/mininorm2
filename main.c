@@ -1,20 +1,21 @@
 #include "headers/lexer.h"
 
-void is_logic_valid(t_shell *shell)
-{
-	t_token	*tmp;
+// void is_logic_valid(t_shell *shell)
+// {
+// 	t_token	*tmp;
 
-	tmp = shell->token;
-	while (tmp)
-	{
-		if (tmp->type == PIPE
-}
+// 	tmp = shell->token;
+// 	while (tmp)
+// 	{
+// 		if (tmp->type == PIPE
+// }
 
 void	ft_parsing(char *input, t_shell *shell)
 {
 	int	i;
 
 	i = 0;
+	whitespace_to_space(&input);
 	shell->splitted = ft_split2(input, ' ');
 	if (shell->splitted == NULL)
 		ft_exit(NULL, shell);
@@ -27,6 +28,7 @@ void	ft_parsing(char *input, t_shell *shell)
 	ft_free_str_array(shell->splitted);
 	refine_token_type(shell->token);
 	expand(shell);
+	printf("test");
 	second_refine_token_type(shell->token);
 	shell->splitted = NULL;
 }

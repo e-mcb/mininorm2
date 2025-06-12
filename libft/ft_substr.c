@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   second_refine.c                                    :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/04 17:12:13 by mzutter           #+#    #+#             */
-/*   Updated: 2025/06/12 20:30:48 by mzutter          ###   ########.fr       */
+/*   Created: 2024/10/29 23:49:16 by mzutter           #+#    #+#             */
+/*   Updated: 2025/05/26 20:23:30 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/lexer.h"
+#include "libft.h"
 
-void	second_refine_token_type(t_token *token)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	t_token	*t;
-	bool	has_cmd;
+	char	*sub;
+	size_t	j;
 
-	has_cmd = false;
-	t = token;
-	while (t)
+	sub = malloc(len + 1);
+	if (!sub)
+		return (NULL);
+	j = 0;
+	while (j < len)
 	{
-		if (t->type == PIPE)
-		{
-			has_cmd = false;
-			t = t->next;
-		}
-		if (t->type == WORD && !has_cmd)
-		{
-			t->type = CMD;
-			has_cmd = true;
-		}
-		if (t->type == WORD && has_cmd)
-			t->type = ARG;
-		t = t->next;
+		sub[j] = s[start + j];
+		j++;
 	}
-	printf("test");
+	sub[j] = '\0';
+	return (sub);
 }

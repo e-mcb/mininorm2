@@ -6,7 +6,7 @@
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 13:29:53 by mzutter           #+#    #+#             */
-/*   Updated: 2025/05/27 22:53:09 by mzutter          ###   ########.fr       */
+/*   Updated: 2025/06/12 20:34:17 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ bool	handle_quotes(char c, bool *in_quotes, char *opening_quote)
 
 bool	is_whitespace(char c)
 {
-	return(c == ' ' || c == '\t' || c == '\n');
+	return (c == ' ' || c == '\t' || c == '\n');
 }

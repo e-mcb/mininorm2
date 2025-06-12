@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   second_refine.c                                    :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/04 17:12:13 by mzutter           #+#    #+#             */
-/*   Updated: 2025/06/12 20:30:48 by mzutter          ###   ########.fr       */
+/*   Created: 2024/10/29 23:38:24 by mzutter           #+#    #+#             */
+/*   Updated: 2025/04/21 22:13:41 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/lexer.h"
+#include "libft.h"
 
-void	second_refine_token_type(t_token *token)
+void	ft_bzero(void *s, size_t n)
 {
-	t_token	*t;
-	bool	has_cmd;
+	char	*tmp;
 
-	has_cmd = false;
-	t = token;
-	while (t)
+	tmp = (char *) s;
+	while (n > 0)
 	{
-		if (t->type == PIPE)
-		{
-			has_cmd = false;
-			t = t->next;
-		}
-		if (t->type == WORD && !has_cmd)
-		{
-			t->type = CMD;
-			has_cmd = true;
-		}
-		if (t->type == WORD && has_cmd)
-			t->type = ARG;
-		t = t->next;
+		*(tmp) = 0;
+		tmp++;
+		n--;
 	}
-	printf("test");
 }

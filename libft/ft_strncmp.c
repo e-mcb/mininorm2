@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   second_refine.c                                    :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzutter <mzutter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/04 17:12:13 by mzutter           #+#    #+#             */
-/*   Updated: 2025/06/12 20:30:48 by mzutter          ###   ########.fr       */
+/*   Created: 2024/10/29 23:48:06 by mzutter           #+#    #+#             */
+/*   Updated: 2025/05/30 20:39:54 by mzutter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/lexer.h"
+#include "libft.h"
 
-void	second_refine_token_type(t_token *token)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_token	*t;
-	bool	has_cmd;
+	size_t	i;
 
-	has_cmd = false;
-	t = token;
-	while (t)
+	i = 0;
+	while ((s1[i] != 0 || s2[i] != 0) && i < n)
 	{
-		if (t->type == PIPE)
-		{
-			has_cmd = false;
-			t = t->next;
-		}
-		if (t->type == WORD && !has_cmd)
-		{
-			t->type = CMD;
-			has_cmd = true;
-		}
-		if (t->type == WORD && has_cmd)
-			t->type = ARG;
-		t = t->next;
+		if ((unsigned char) s1[i] != (unsigned char) s2[i])
+			return ((unsigned char) s1[i] - (unsigned char) s2[i]);
+		i++;
 	}
-	printf("test");
+	return (0);
 }
