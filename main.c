@@ -1,14 +1,49 @@
 #include "headers/lexer.h"
+#include "libft/libft.h"
 
-// void is_logic_valid(t_shell *shell)
-// {
-// 	t_token	*tmp;
+bool is_redir(t_token_type type)
+{
+    return (type == IN || type == OUT || type == APPEND || type == HDOC);
+}
 
-// 	tmp = shell->token;
-// 	while (tmp)
-// 	{
-// 		if (tmp->type == PIPE
-// }
+void print_redir_error(int type)
+{
+    if (type == IN)
+        ft_putstr_fd("syntax error near unexpected token '<'\n", 2);
+    else if (type == OUT)
+        ft_putstr_fd("syntax error near unexpected token '>'\n", 2);
+    else if (type == APPEND)
+        ft_putstr_fd("syntax error near unexpected token '>>'\n", 2);
+}
+
+
+ void is_logic_valid(t_shell *shell)
+ {
+ 	t_token	*tmp;
+
+ 	tmp = shell->token;
+	if (tmp->type == PIPE)
+	{
+		ft_putstr_fd("syntax error near unexpected token |", 2);
+		//ft_exit
+	}
+ 	while (tmp)
+ 	{
+ 		if (is_redir(tmp->type && tmp->next == NULL) || is_redir(tmp->type)
+			&& is_redir(tmp->next->type))
+		{
+			print_redir_error(tmp->next->type);
+			//ft_exit(NULL, shell);
+		}
+		if (((is_redir(tmp->type) && tmp->next->type == PIPE))
+			|| (tmp->type == PIPE && tmp->next->type == PIPE))
+		{
+			ft_putstr_fd("syntax error near unexpected token |", 2);
+			//ft_exit
+		}
+ 		tmp = tmp->next;
+ 	}
+ }
 
 void	ft_parsing(char *input, t_shell *shell)
 {
